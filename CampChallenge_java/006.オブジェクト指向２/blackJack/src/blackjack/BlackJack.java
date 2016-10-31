@@ -27,6 +27,8 @@ public class BlackJack {
         //userがさらに引くかどうか
         while(u.checkSum()){
             u.setCard(d.hit());
+            u.checkSuit();
+            u.checkAce();
         }
         //dealerの絵柄とエースをチェック、処理
         d.checkSuit();
@@ -34,6 +36,8 @@ public class BlackJack {
         //dealerがさらに引くかどうか
         while(d.checkSum()){
             d.setCard(d.hit());
+            d.checkSuit();
+            d.checkAce();
         }
         //open(点数の確定～勝敗の判定)
         if(d.checkBust()&&u.checkBust()){
