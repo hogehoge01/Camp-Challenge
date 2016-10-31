@@ -13,8 +13,9 @@
     try{
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         db_con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Challenge_db","Yudai","pass");
-        db_st=db_con.prepareStatement("select * from profiles where name like '%茂%'");
+        db_st=db_con.prepareStatement("select * from profiles where name like '%亜%'");
         ResultSet db_rs=db_st.executeQuery();
+        boolean nullCheck=false;
         while(db_rs.next()){
             out.print(db_rs.getInt("profilesID"));
             out.print(db_rs.getString("name"));
@@ -22,6 +23,10 @@
             out.print(db_rs.getInt("age"));
             out.print(db_rs.getString("birthday"));
             out.print("<br>");
+            nullCheck=true;
+        }
+        if(!nullCheck){
+            out.print("一致無し<br>");
         }
         db_st.close();
         db_con.close();
