@@ -13,7 +13,7 @@
     try{
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         db_con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Challenge_db","Yudai","pass");
-        db_st=db_con.prepareStatement("select * from profiles where name like '%亜%'");
+        db_st=db_con.prepareStatement("select * from profiles where name like '%茂%'");
         ResultSet db_rs=db_st.executeQuery();
         boolean nullCheck=false;
         while(db_rs.next()){
