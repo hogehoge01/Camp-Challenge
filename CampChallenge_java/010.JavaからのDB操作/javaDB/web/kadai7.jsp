@@ -24,8 +24,7 @@
         boolean nullCheck=false;
         while(db_rs.next()){
             out.print(db_rs.getInt("profilesID"));
-            out.print(" ");
-            out.print(db_rs.getString("name")+" ");
+            out.print(db_rs.getString("name"));
             out.print(db_rs.getString("tell"));
             out.print(db_rs.getInt("age"));
             out.print(db_rs.getString("birthday"));
