@@ -5,7 +5,6 @@ package kadai;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -35,31 +34,73 @@ public class kadaiC extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        final String fw="/jsp/Form.jsp";
+        final String fw = "/WEB-INF/jsp/Form.jsp";
         try {
-            /* TODO output your page here. You may use following sample code. */
-            String result="";
             request.setCharacterEncoding("UTF-8");
-            String k8 = request.getParameter("k8");
-            result=kadaiM.kadai8(k8);
-            //Request Scope
-            JB jb=new JB();
-            jb.setResult(result);
-            request.setAttribute("JB",jb);
-            RequestDispatcher rd=request.getRequestDispatcher(fw);
-            rd.forward(request,response);
+            //課題８
+            if (request.getParameter("8IsntEmpty") != null) {
+                String result8 = "";
+                String k8 = request.getParameter("k8");
+                result8 = kadaiM.kadai8(k8);
+                //課題８RequestScope
+                JB jb8 = new JB();
+                jb8.setResult(result8);
+                request.setAttribute("JB8", jb8);
+            }
+            //課題９
+            if (request.getParameter("9IsntEmpty") != null) {
+                String result9 = "";
+                String profilesID9 = request.getParameter("profilesID");
+                String name9 = request.getParameter("name");
+                String tell9 = request.getParameter("tell");
+                String age9 = request.getParameter("age");
+                String birthday9 = request.getParameter("birthday");
+                result9 = kadaiM.kadai9(profilesID9, name9, tell9, age9, birthday9);
+                //課題９RequestScope
+                JB jb9 = new JB();
+                jb9.setResult(result9);
+                request.setAttribute("JB9", jb9);
+            }
+            //課題１０
+            if (request.getParameter("10IsntEmpty") != null) {
+                String result10 = "";
+                String profilesID10 = request.getParameter("k10");
+                result10 = kadaiM.kadai10(profilesID10);
+                //課題１０RequestScope
+                JB jb10 = new JB();
+                jb10.setResult(result10);
+                request.setAttribute("JB10", jb10);
+            }
+            //課題１１
+            if (request.getParameter("11IsntEmpty") != null) {
+                String result11 = "";
+                String profilesID11 = request.getParameter("profilesID");
+                String name11 = request.getParameter("name");
+                String tell11 = request.getParameter("tell");
+                String age11 = request.getParameter("age");
+                String birthday11 = request.getParameter("birthday");
+                result11 = kadaiM.kadai11(profilesID11, name11, tell11, age11, birthday11);
+                //課題１１RequestScope
+                JB jb11 = new JB();
+                jb11.setResult(result11);
+                request.setAttribute("JB11", jb11);
+            }
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet kadaiC</title>");            
+            out.println("<title>Servlet kadaiC</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet kadaiC at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }catch(Exception e){
+            //Forward
+            RequestDispatcher rd = request.getRequestDispatcher(fw);
+            rd.forward(request, response);
+
+        } catch (Exception e) {
             out.print(e.toString());
-        }finally {
+        } finally {
             out.close();
         }
     }
